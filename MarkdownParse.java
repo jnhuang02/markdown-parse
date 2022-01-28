@@ -20,6 +20,12 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")", openParen);
             if(openParen == -1 || closeParen == -1){
                 return toReturn;
+            }  
+            int space = markdown.indexOf(" ", nextCloseBracket);
+            //If link has space, will not print, as it is not real link.
+            if(space != -1){
+             openParen = markdown.indexOf("(", nextCloseBracket + 2);
+             closeParen = markdown.indexOf(")", openParen);
             }
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
