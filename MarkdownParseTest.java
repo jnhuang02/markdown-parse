@@ -27,11 +27,11 @@ public class MarkdownParseTest {
     @Test
     public void failTest() throws IOException{
         String contentsTest = Files.readString(Path.of("/Users/justinhuang/Documents/GitHub/markdown-parse/test-file.md"));
-        assertEquals(List.of("fail test", "some-page.html"),
+        assertEquals(List.of("fail test", "some-page.html"), 
             MarkdownParse.getLinks(contentsTest));
 
     }
         
-        
+        ///
    
 }
