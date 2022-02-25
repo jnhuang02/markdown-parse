@@ -13,20 +13,20 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            // if(nextOpenBracket == -1 || nextCloseBracket == -1){
-            //     return toReturn;
-            // }
+            if(nextOpenBracket == -1 || nextCloseBracket == -1){
+                return toReturn;
+            }
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            // if(openParen == -1 || closeParen == -1){
-            //     return toReturn;
-            // }  
-            int space = markdown.indexOf(" ", nextCloseBracket);
+            if(openParen == -1 || closeParen == -1){
+                return toReturn;
+            }  
+            String sub = markdown.substring(openParen, closeParen);
             //If link has space, will not print, as it is not real link.
-            // if(space != -1){
-            //  openParen = markdown.indexOf("(", nextCloseBracket + 2);
-            //  closeParen = markdown.indexOf(")", openParen);
-            // }
+            if(sub.indexOf(" ", openParen) != -1){
+                openParen = markdown.indexOf("(", nextCloseBracket + 2);
+                closeParen = markdown.indexOf(")", openParen);
+            }
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
